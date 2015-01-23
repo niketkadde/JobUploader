@@ -29,12 +29,13 @@ dependencies {
 apply plugin: 'maven'
 
 uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: 'https://repo.mymavenrepo.com/PQfGHOSy430b3gW0F0Nr/')
-            pom.version = '1.0.1'
-            pom.artifactId = 'myMavenNameNiket'
-            pom.groupId='com.nik.lib'
+    repositories.mavenDeployer {
+        def deployPath = file(getProperty('aar.deployPath'))
+        repository(url: "file://${deployPath.absolutePath}")
+        pom.project {
+            groupId 'com.nik.gitlib'
+            artifactId 'my-first-git-lib'
+            version "1.0.0"
         }
     }
 }
